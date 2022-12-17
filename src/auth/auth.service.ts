@@ -11,10 +11,9 @@ export class AuthService {
 
     async register(email: string, password: string) {
         const salt = randomBytes(8).toString('hex');
-
         const hash = (await scrypt(password, salt, 32)) as Buffer;
 
-        const hashPassword = salt + '.' + hash.toString('hex');
+        const hashPassword = `${salt}.${hash.toString('hex')}`;
 
         const user = await this.usersService.create(email, hashPassword);
 
