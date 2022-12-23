@@ -6,11 +6,6 @@ import { User } from 'src/users/user.entity';
 @Module({
     imports: [
         TypeOrmModule.forRootAsync({
-            imports: [
-                ConfigModule.forRoot({
-                    envFilePath: [".env"],
-                }),
-            ],
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => ({
                 type: "postgres",
